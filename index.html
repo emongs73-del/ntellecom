@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>앤텔레콤 공식 대리점 | 셀프 개통 서비스</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap');
+
+  :root {
+    --primary: #FF6B00;
+    --primary-light: #FF8C3A;
+    --primary-dark: #E05A00;
+    --dark: #1a1a2e;
+    --dark2: #16213e;
+    --card-bg: #ffffff;
+    --text-dark: #1a1a2e;
+    --text-mid: #4a4a6a;
+    --text-light: #8888aa;
+    --bg-light: #f4f6fa;
+    --border: #e8eaf0;
+    --shadow: 0 4px 24px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 40px rgba(0,0,0,0.14);
+    --radius: 16px;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    color: var(--text-dark);
+    background: #fff;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ========== NAVBAR ========== */
+  .navbar {
+    position: fixed; top:0; left:0; width:100%; z-index:999;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 0;
+    transition: box-shadow .3s;
+  }
+  .navbar.scrolled { box-shadow: var(--shadow); }
+  .navbar-inner {
+    max-width: 1200px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 0 24px;
+  }
+  .logo {
+    font-size: 20px; font-weight:800; color: var(--primary);
+    text-decoration:none; letter-spacing:-0.5px;
+  }
+  .logo span { color: var(--dark); }
+  .nav-links {
+    display:flex; gap:28px; list-style:none;
+  }
+  .nav-links a {
+    text-decoration:none; color: var(--text-mid);
+    font-size:14px; font-weight:600;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--primary); }
+  .nav-cta {
+    background: var(--primary); color:#fff;
+    border:none; border-radius:8px;
+    padding: 9px 20px; font-size:13px; font-weight:700;
+    cursor:pointer; text-decoration:none;
+    transition: background .2s, transform .15s;
+  }
+  .nav-cta:hover { background: var(--primary-dark); transform: translateY(-1px); }
+
+  /* ========== HERO ========== */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 60%, #0f3460 100%);
+    display:flex; align-items:center; justify-content:center;
+    position:relative; overflow:hidden;
+    padding: 120px 24px 80px;
+  }
+  .hero::before {
+    content:'';
+    position:absolute; top:-30%; right:-10%; width:700px; height:700px;
+    background: radial-gradient(circle, rgba(255,107,0,0.15) 0%, transparent 70%);
+    border-radius:50%;
+  }
+  .hero::after {
+    content:'';
+    position:absolute; bottom:-20%; left:-5%; width:500px; height:500px;
+    background: radial-gradient(circle, rgba(255,107,0,0.08) 0%, transparent 70%);
+    border-radius:50%;
+  }
+  .hero-content {
+    position:relative; z-index:1;
+    max-width:1100px; width:100%;
+    display:flex; align-items:center; justify-content:space-between; gap:60px;
+  }
+  .hero-text { flex:1; }
+  .hero-badge {
+    display:inline-flex; align-items:center; gap:8px;
+    background: rgba(255,107,0,0.12); border:1px solid rgba(255,107,0,0.3);
+    color: var(--primary-light); border-radius:30px;
+    padding: 6px 16px; font-size:13px; font-weight:600;
+    margin-bottom:24px;
+  }
+  .hero-badge .dot {
+    width:8px; height:8px; border-radius:50%;
+    background: var(--primary); box-shadow: 0 0 8px rgba(255,107,0,0.6);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity:1; }
+    50% { opacity:0.4; }
+  }
+  .hero h1 {
+    font-size: clamp(32px,5vw,52px);
+    font-weight:800; color:#fff; line-height:1.2;
+    margin-bottom:20px; letter-spacing:-1px;
+  }
+  .hero h1 em {
+    font-style:normal; color: var(--primary);
+  }
+  .hero p {
+    font-size:17px; color:rgba(255,255,255,0.6);
+    line-height:1.7; max-width:480px;
+    margin-bottom:36px;
+  }
+  .hero-btns { display:flex; gap:14px; flex-wrap:wrap; }
+  .btn-primary {
+    display:inline-flex; align-items:center; gap:8px;
+    background: var(--primary); color:#fff;
+    padding: 15px 30px; border-radius:12px;
+    font-size:15px; font-weight:700; text-decoration:none;
+    transition: all .25s; box-shadow: 0 6px 24px rgba(255,107,0,0.35);
+  }
+  .btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 32px rgba(255,107,0,0.45);
+  }
+  .btn-secondary {
+    display:inline-flex; align-items:center; gap:8px;
+    background: rgba(255,255,255,0.08); color:#fff;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 15px 28px; border-radius:12px;
+    font-size:15px; font-weight:600; text-decoration:none;
+    transition: all .25s;
+  }
+  .btn-secondary:hover {
+    background: rgba(255,255,255,0.14);
+    border-color: rgba(255,255,255,0.4);
+  }
+
+  /* hero right card */
+  .hero-card {
+    flex: 0 0 380px;
+    background: rgba(255,255,255,0.07);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius:24px; padding:36px;
+    position:relative;
+  }
+  .hero-card h3 {
+    color:#fff; font-size:18px; font-weight:700;
+    margin-bottom:6px;
+  }
+  .hero-card > p {
+    color:rgba(255,255,255,0.5); font-size:13px;
+    margin-bottom:28px;
+  }
+  .code-box {
+    background: rgba(0,0,0,0.3); border-radius:12px;
+    padding: 16px 20px; margin-bottom:24px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .code-label { color:rgba(255,255,255,0.5); font-size:12px; margin-bottom:4px; }
+  .code-value { color:#fff; font-size:22px; font-weight:800; letter-spacing:2px; }
+  .copy-btn {
+    background: var(--primary); border:none; color:#fff;
+    width:38px; height:38px; border-radius:8px;
+    cursor:pointer; font-size:16px;
+    transition: background .2s;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .copy-btn:hover { background: var(--primary-dark); }
+  .hero-card-links { display:flex; flex-direction:column; gap:10px; }
+  .hero-card-links a {
+    display:flex; align-items:center; gap:10px;
+    text-decoration:none; color:rgba(255,255,255,0.8);
+    font-size:13px; font-weight:500;
+    background: rgba(255,255,255,0.06);
+    border-radius:10px; padding:12px 16px;
+    transition: background .2s;
+  }
+  .hero-card-links a:hover { background: rgba(255,255,255,0.12); }
+  .hero-card-links .icon {
+    width:32px; height:32px; border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:15px; flex-shrink:0;
+  }
+  .icon-kakao { background: #FFE812; color:#3C1E08; }
+  .icon-open { background: rgba(255,107,0,0.2); color: var(--primary); }
+  .icon-phone { background: rgba(76,175,80,0.2); color:#4CAF50; }
+
+  /* ========== SECTION COMMON ========== */
+  .section { padding: 100px 24px; }
+  .section-inner { max-width:1100px; margin:0 auto; }
+  .section-header { text-align:center; margin-bottom:60px; }
+  .section-tag {
+    display:inline-block; background: rgba(255,107,0,0.08);
+    color: var(--primary); font-size:12px; font-weight:700;
+    padding: 5px 14px; border-radius:20px; margin-bottom:14px;
+    text-transform:uppercase; letter-spacing:1px;
+  }
+  .section-header h2 {
+    font-size: clamp(26px,4vw,38px); font-weight:800;
+    color: var(--dark); letter-spacing:-0.5px; margin-bottom:12px;
+  }
+  .section-header p {
+    color: var(--text-light); font-size:16px; max-width:560px; margin:0 auto;
+  }
+
+  /* ========== FEATURES GRID ========== */
+  .features { background: var(--bg-light); }
+  .features-grid {
+    display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+    gap:24px;
+  }
+  .feature-card {
+    background:#fff; border-radius:var(--radius);
+    padding:32px 28px; box-shadow: var(--shadow);
+    transition: transform .25s, box-shadow .25s;
+    border: 1px solid var(--border);
+  }
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+  }
+  .feature-icon {
+    width:52px; height:52px; border-radius:14px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:24px; margin-bottom:20px;
+    background: linear-gradient(135deg, rgba(255,107,0,0.1), rgba(255,140,58,0.15));
+  }
+  .feature-card h4 { font-size:17px; font-weight:700; margin-bottom:8px; color: var(--dark); }
+  .feature-card p { font-size:14px; color: var(--text-mid); line-height:1.6; }
+
+  /* ========== PLANS ========== */
+  .plans-grid {
+    display:grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+    gap:24px;
+  }
+  .plan-card {
+    background:#fff; border-radius:var(--radius);
+    border: 2px solid var(--border);
+    padding: 36px 28px; position:relative;
+    transition: border-color .25s, box-shadow .25s;
+  }
+  .plan-card:hover {
+    border-color: var(--primary);
+    box-shadow: var(--shadow-hover);
+  }
+  .plan-card.popular {
+    border-color: var(--primary);
+    background: linear-gradient(180deg, #fff8f4 0%, #fff 40%);
+  }
+  .plan-badge {
+    position:absolute; top:-12px; left:50%; transform:translateX(-50%);
+    background: var(--primary); color:#fff;
+    font-size:11px; font-weight:800; padding: 4px 14px;
+    border-radius:20px; white-space:nowrap; letter-spacing:0.5px;
+  }
+  .plan-network {
+    font-size:12px; font-weight:700; color: var(--primary);
+    text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;
+  }
+  .plan-card h3 { font-size:20px; font-weight:800; color: var(--dark); margin-bottom:6px; }
+  .plan-card .plan-desc { font-size:13px; color: var(--text-light); margin-bottom:20px; }
+  .plan-price { margin-bottom:20px; }
+  .plan-price .amount { font-size:34px; font-weight:800; color: var(--dark); }
+  .plan-price .unit { font-size:14px; color: var(--text-light); }
+  .plan-details { list-style:none; margin-bottom:24px; }
+  .plan-details li {
+    font-size:13px; color: var(--text-mid); padding:6px 0;
+    border-bottom: 1px solid var(--border);
+    display:flex; align-items:center; gap:8px;
+  }
+  .plan-details li:last-child { border-bottom:none; }
+  .plan-details .check { color: var(--primary); font-weight:700; }
+  .plan-btn {
+    display:block; width:100%; padding:12px; border-radius:10px;
+    border: 2px solid var(--primary); background:transparent;
+    color: var(--primary); font-size:14px; font-weight:700;
+    cursor:pointer; text-decoration:none; text-align:center;
+    transition: all .2s;
+  }
+  .plan-btn:hover {
+    background: var(--primary); color:#fff;
+  }
+  .plan-card.popular .plan-btn {
+    background: var(--primary); color:#fff;
+  }
+  .plan-card.popular .plan-btn:hover {
+    background: var(--primary-dark);
+  }
+
+  /* ========== STEPS ========== */
+  .steps { background: var(--bg-light); }
+  .steps-grid {
+    display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+    gap:32px; position:relative;
+  }
+  .step-card { text-align:center; position:relative; }
+  .step-number {
+    width:64px; height:64px; border-radius:50%;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color:#fff; font-size:24px; font-weight:800;
+    display:flex; align-items:center; justify-content:center;
+    margin: 0 auto 20px; box-shadow: 0 6px 20px rgba(255,107,0,0.3);
+  }
+  .step-card h4 { font-size:16px; font-weight:700; color: var(--dark); margin-bottom:8px; }
+  .step-card p { font-size:13px; color: var(--text-mid); line-height:1.6; }
+  .step-card .step-code {
+    display:inline-block; margin-top:10px;
+    background: rgba(255,107,0,0.08); color: var(--primary);
+    font-size:13px; font-weight:700; padding: 4px 12px;
+    border-radius:6px;
+  }
+
+  /* ========== TESTIMONIALS ========== */
+  .testimonials-grid {
+    display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+    gap:24px;
+  }
+  .testimonial-card {
+    background:#fff; border-radius:var(--radius);
+    padding:28px; box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+  }
+  .testimonial-stars { color: var(--primary); font-size:16px; margin-bottom:14px; }
+  .testimonial-card p {
+    font-size:14px; color: var(--text-mid); line-height:1.7; margin-bottom:18px;
+  }
+  .testimonial-author { display:flex; align-items:center; gap:10px; }
+  .testimonial-avatar {
+    width:38px; height:38px; border-radius:50%;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-size:14px; font-weight:700;
+  }
+  .testimonial-author-info .name { font-size:13px; font-weight:700; color: var(--dark); }
+  .testimonial-author-info .role { font-size:12px; color: var(--text-light); }
+
+  /* ========== FAQ ========== */
+  .faq { background: var(--bg-light); }
+  .faq-list { max-width:720px; margin:0 auto; }
+  .faq-item {
+    background:#fff; border-radius:12px; margin-bottom:12px;
+    border:1px solid var(--border); overflow:hidden;
+  }
+  .faq-q {
+    padding: 20px 24px; cursor:pointer;
+    display:flex; align-items:center; justify-content:space-between;
+    font-size:15px; font-weight:600; color: var(--dark);
+    transition: color .2s;
+    user-select:none;
+  }
+  .faq-q:hover { color: var(--primary); }
+  .faq-q .arrow {
+    font-size:18px; transition: transform .3s; color: var(--text-light);
+  }
+  .faq-item.open .faq-q .arrow { transform: rotate(180deg); }
+  .faq-a {
+    max-height:0; overflow:hidden;
+    transition: max-height .35s ease, padding .3s;
+    font-size:14px; color: var(--text-mid); line-height:1.7;
+    padding: 0 24px;
+  }
+  .faq-item.open .faq-a {
+    max-height:200px; padding: 0 24px 20px;
+  }
+
+  /* ========== CTA BANNER ========== */
+  .cta-banner {
+    background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%);
+    padding: 80px 24px; text-align:center; position:relative; overflow:hidden;
+  }
+  .cta-banner::before {
+    content:''; position:absolute;
+    top:-50%; left:-10%; width:600px; height:600px;
+    background: radial-gradient(circle, rgba(255,107,0,0.12) 0%, transparent 70%);
+    border-radius:50%;
+  }
+  .cta-banner h2 {
+    position:relative; z-index:1;
+    color:#fff; font-size: clamp(24px,4vw,36px); font-weight:800;
+    margin-bottom:14px; letter-spacing:-0.5px;
+  }
+  .cta-banner p {
+    position:relative; z-index:1;
+    color:rgba(255,255,255,0.5); font-size:16px;
+    margin-bottom:32px; max-width:500px; margin-left:auto; margin-right:auto;
+  }
+  .cta-btns {
+    position:relative; z-index:1;
+    display:flex; gap:14px; justify-content:center; flex-wrap:wrap;
+  }
+  .cta-btns a { display:inline-flex; align-items:center; gap:8px; }
+
+  /* ========== CONTACT BAR ========== */
+  .contact-bar {
+    background:#fff; border-top:1px solid var(--border);
+    padding: 40px 24px;
+  }
+  .contact-bar-inner {
+    max-width:900px; margin:0 auto;
+    display:flex; align-items:center; justify-content:center; gap:40px;
+    flex-wrap:wrap;
+  }
+  .contact-item {
+    display:flex; align-items:center; gap:12px;
+    text-decoration:none; color: var(--text-dark);
+    transition: color .2s;
+  }
+  .contact-item:hover { color: var(--primary); }
+  .contact-item .c-icon {
+    width:44px; height:44px; border-radius:12px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:20px;
+  }
+  .c-icon.kakao { background:#FFE812; color:#3C1E08; }
+  .c-icon.phone { background:rgba(76,175,80,0.1); color:#4CAF50; }
+  .c-icon.open { background:rgba(255,107,0,0.1); color:var(--primary); }
+  .contact-item .c-label { font-size:12px; color: var(--text-light); }
+  .contact-item .c-value { font-size:14px; font-weight:700; }
+
+  /* ========== FOOTER ========== */
+  .footer {
+    background: var(--dark); color:rgba(255,255,255,0.5);
+    padding: 50px 24px 30px;
+  }
+  .footer-inner { max-width:1100px; margin:0 auto; }
+  .footer-top {
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:32px;
+    padding-bottom:32px; border-bottom:1px solid rgba(255,255,255,0.08);
+    margin-bottom:28px;
+  }
+  .footer-brand .logo { font-size:22px; }
+  .footer-brand p {
+    font-size:13px; color:rgba(255,255,255,0.4); margin-top:10px;
+    max-width:320px; line-height:1.6;
+  }
+  .footer-links { display:flex; gap:48px; }
+  .footer-links h5 { color:#fff; font-size:13px; font-weight:700; margin-bottom:16px; }
+  .footer-links ul { list-style:none; }
+  .footer-links li { margin-bottom:10px; }
+  .footer-links a {
+    color:rgba(255,255,255,0.4); text-decoration:none; font-size:13px;
+    transition: color .2s;
+  }
+  .footer-links a:hover { color: var(--primary); }
+  .footer-bottom {
+    font-size:12px; color:rgba(255,255,255,0.3);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width:768px) {
+    .hero-content { flex-direction:column; text-align:center; }
+    .hero p { max-width:100%; }
+    .hero-card { flex:1; width:100%; max-width:420px; }
+    .nav-links { display:none; }
+    .hero-btns { justify-content:center; }
+    .contact-bar-inner { flex-direction:column; gap:20px; }
+    .footer-top { flex-direction:column; }
+    .footer-links { flex-direction:column; gap:24px; }
+  }
+
+  /* ========== COPY TOAST ========== */
+  .toast {
+    position:fixed; bottom:30px; left:50%; transform:translateX(-50%) translateY(100px);
+    background: var(--dark); color:#fff; padding: 12px 24px;
+    border-radius:10px; font-size:14px; font-weight:600;
+    z-index:9999; transition: transform .3s ease;
+    display:flex; align-items:center; gap:8px;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="#" class="logo">몽실언니<span>선불폰</span></a>
+    <ul class="nav-links">
+      <li><a href="#features">서비스</a></li>
+      <li><a href="#plans">요금제</a></li>
+      <li><a href="#steps">개통절차</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a href="http://pf.kakao.com/_Dfxiib" target="_blank" class="nav-cta">카톡 상담</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge"><span class="dot"></span> 앤텔레콤 공식 대리점 · 365일 운영</div>
+      <h1>본인명의 폰<br><em>5분 안에</em> 완료</h1>
+      <p>미납이 있어도, 신용이 낮아도 괜찮습니다.<br>셀프 개통으로 지금 당장 본인 명의 폰을 만들어보세요.</p>
+      <div class="hero-btns">
+        <a href="https://www.n-telecom.co.kr/n0515" target="_blank" class="btn-primary">🚀 개통 시작하기</a>
+        <a href="http://pf.kakao.com/_Dfxiib" target="_blank" class="btn-secondary">💬 카톡 상담</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h3>태블릿 소유자 회원번호</h3>
+      <p>개통시 아래 코드를 필수로 입력해주세요</p>
+      <div class="code-box" style="background:#fff; border:3px solid var(--primary); padding:24px 30px; max-width:500px; margin:0 auto;">
+        <div style="text-align:center; width:100%;">
+          <div class="code-label" style="color:var(--primary); font-weight:700; font-size:16px; margin-bottom:12px;">⭐ 필수 입력 코드</div>
+          <div class="code-value" style="font-size:38px; color:var(--primary); font-weight:900; letter-spacing:2px; line-height:1.2;" id="codeValue">2674679</div>
+        </div>
+      </div>
+      <div class="hero-card-links">
+        <a href="http://pf.kakao.com/_Dfxiib" target="_blank">
+          <div class="icon icon-kakao" style="background:#FEE500; padding:0; overflow:hidden;">
+            <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+              <rect width="32" height="32" fill="#FEE500"/>
+              <path d="M16 6C10.477 6 6 9.582 6 14c0 2.891 1.896 5.434 4.76 6.928-.197.718-.643 2.357-.738 2.738-.112.457.168.45.355.327.148-.097 2.372-1.606 3.282-2.218.447.062.906.096 1.374.096 5.523 0 10-3.582 10-8S21.523 6 16 6z" fill="#3C1E1E"/>
+            </svg>
+          </div>
+          <span>카카오 채널 상담</span>
+        </a>
+        <a href="https://www.n-telecom.co.kr/n0515" target="_blank">
+          <div class="icon icon-open">🌐</div>
+          <span>개통 링크 바로 이동</span>
+        </a>
+        <a href="tel:01029496732">
+          <div class="icon icon-phone">📞</div>
+          <span>전화: 010-2949-6732</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section features" id="features">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">서비스 특징</div>
+      <h2>왜 몽실언니를 선택할까요?</h2>
+      <p>복잡한 절차 없이 간단하고 빠르게, 누구든 본인 명의 폰을 만들 수 있습니다.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h4>5분 만에 개통</h4>
+        <p>앱을 통해 간단한 절차로 즉시 본인 명의 폰을 완료할 수 있습니다.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <h4>신용 무관</h4>
+        <p>신용불량자, 미납폰 사용자 누구든 제외 없이 본인명의 개통 가능합니다.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <h4>기존 폰 그대로</h4>
+        <p>쓰던 폰 기계를 그대로 사용하고, 유심만 교체하면 즉시 사용 가능합니다.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌙</div>
+        <h4>365일 운영</h4>
+        <p>주말·공휴일 상관없이 오전 8시~오후 9시50분까지 즉시 승인 가능합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANS -->
+<section class="section" id="plans">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">요금제</div>
+      <h2>합리적인 선불 요금제</h2>
+      <p>약정 없이 통신비를 30% 이상 절약할 수 있습니다.</p>
+    </div>
+    <div class="plans-grid" id="plans-container">
+      <!-- 선불 396 -->
+      <div class="plan-card">
+        <div class="plan-network">선불 · KT/LG망</div>
+        <h3>LTE 396</h3>
+        <p class="plan-desc">데이터 걱정 없는 플랜</p>
+        <div class="plan-price">
+          <span class="amount">₩39,600</span><span class="unit">/월</span>
+        </div>
+        <ul class="plan-details">
+          <li><span class="check">✓</span> 데이터 10.3GB + 3Mbps</li>
+          <li><span class="check">✓</span> 통화 기본 제공</li>
+          <li><span class="check">✓</span> 문자 기본 제공</li>
+        </ul>
+        <a href="https://www.n-telecom.co.kr/n0515" target="_blank" class="plan-btn">신청하기</a>
+      </div>
+
+      <!-- 선불 459 K망 전용 -->
+      <div class="plan-card popular">
+        <div class="plan-badge">🔥 인기 1위</div>
+        <div class="plan-network">선불 · K망 전용</div>
+        <h3>LTE 459</h3>
+        <p class="plan-desc">더 빠른 속도, 넉넉한 용량</p>
+        <div class="plan-price">
+          <span class="amount">₩45,900</span><span class="unit">/월</span>
+        </div>
+        <ul class="plan-details">
+          <li><span class="check">✓</span> 데이터 20.3GB + 3Mbps</li>
+          <li><span class="check">✓</span> 통화 기본 제공</li>
+          <li><span class="check">✓</span> 문자 기본 제공</li>
+        </ul>
+        <a href="https://www.n-telecom.co.kr/n0515" target="_blank" class="plan-btn">신청하기</a>
+      </div>
+
+      <!-- 선불 770 -->
+      <div class="plan-card">
+        <div class="plan-network">선불 · KT/LG망</div>
+        <h3>LTE 770</h3>
+        <p class="plan-desc">프리미엄 무제한 플랜</p>
+        <div class="plan-price">
+          <span class="amount">₩77,000</span><span class="unit">/월</span>
+        </div>
+        <ul class="plan-details">
+          <li><span class="check">✓</span> 데이터 11GB+ 매일 2GB + 3Mbps</li>
+          <li><span class="check">✓</span> 통화 기본 제공</li>
+          <li><span class="check">✓</span> 문자 기본 제공</li>
+        </ul>
+        <a href="https://www.n-telecom.co.kr/n0515" target="_blank" class="plan-btn">신청하기</a>
+      </div>
+
+      <!-- 선불 859 -->
+      <div class="plan-card">
+        <div class="plan-network">선불 · KT/LG망</div>
+        <h3>LTE 859</h3>
+        <p class="plan-desc">최고급 무제한 프리미엄</p>
+        <div class="plan-price">
+          <span class="amount">₩85,900</span><span class="unit">/월</span>
+        </div>
+        <ul class="plan-details">
+          <li><span class="check">✓</span> K망: 100GB + 5Mbps</li>
+          <li><span class="check">✓</span> L망: 매일 5GB + 5Mbps</li>
+          <li><span class="check">✓</span> 통화·문자 기본 제공</li>
+        </ul>
+        <a href="https://www.n-telecom.co.kr/n0515" target="_blank" class="plan-btn">신청하기</a>
+      </div>
+
+      <!-- 선불 기본1 — 맨 끝 -->
+      <div class="plan-card">
+        <div class="plan-network">선불 · KT/LG망</div>
+        <h3>기본 1</h3>
+        <p class="plan-desc">본인인증용 최저가 플랜</p>
+        <div class="plan-price">
+          <span class="amount">₩12,100</span><span class="unit">/월</span>
+        </div>
+        <ul class="plan-details">
+          <li><span class="check">✓</span> 데이터 300MB</li>
+          <li><span class="check">✓</span> 통화 50분</li>
+          <li><span class="check">✓</span> 문자 30건</li>
+        </ul>
+        <a href="https://www.n-telecom.co.kr/n0515" target="_blank" class="plan-btn">신청하기</a>
+      </div>
+    </div>
+
+    <!-- 후불 요금제 토글 -->
+    <div style="text-align:center; margin-top:48px;">
+      <button onclick="togglePostpaid()" style="background:none; border:2px solid var(--primary); color:var(--primary); padding:12px 28px; border-radius:10px; font-size:15px; font-weight:700; cursor:pointer; transition: all .2s;" id="postpaidToggleBtn">후불 요금제도 보기 ▼</button>
+    </div>
+
+    <div id="postpaid-plans" style="display:none; margin-top:36px;">
+      <div style="text-align:center; margin-bottom:28px;">
+        <div class="section-tag">후불 요금제</div>
+        <p style="color:var(--text-mid); font-size:14px; margin-top:8px;">신용이 좋으시면 더 저렴하게 이용 가능합니다. (약정 없음)</p>
+      </div>
+
+      <!-- K망 후불 -->
+      <div style="margin-bottom:12px;">
+        <div style="display:inline-block; background:var(--dark); color:#fff; font-size:12px; font-weight:700; padding:5px 14px; border-radius:6px; margin-bottom:16px; letter-spacing:0.5px;">📶 K망 후불 요금제</div>
+      </div>
+      <div class="plans-grid" style="margin-bottom:36px;">
+
+        <!-- K망 후불 11GB+일2GB (추천) -->
+        <div class="plan-card popular">
+          <div class="plan-badge">⭐ 추천</div>
+          <div class="plan-network">후불 · K망</div>
+          <h3>11GB+일2GB(CU)</h3>
+          <p class="plan-desc">데이터 걱정 없는 무제한</p>
+          <div class="plan-price">
+            <span class="amount">₩37,500</span><span class="unit">/월</span>
+          </div>
+          <ul class="plan-details">
+            <li><span class="check">✓</span> 11GB+일2GB(매일 추가 2GB)</li>
+            <li><span class="check">✓</span> 데이터 소진 후 3Mbps 속도</li>
+            <li><span class="check">✓</span> 통화·문자 기본 제공</li>
+          </ul>
+          <a href="https://www.n-telecom.co.kr/n0515" target="_blank" class="plan-btn">신청하기</a>
+        </div>
+
+        <!-- K망 후불 100GB -->
+        <div class="plan-card">
+          <div class="plan-network">후불 · K망</div>
+          <h3>100GB(CU)</h3>
+          <p class="plan-desc">대용량 후불 플랜</p>
+          <div class="plan-price">
+            <span class="amount">₩43,200</span><span class="unit">/월</span>
+          </div>
+          <ul class="plan-details">
+            <li><span class="check">✓</span> 데이터 100GB + 3Mbps</li>
+            <li><span class="check">✓</span> 통화 기본 제공</li>
+            <li><span class="check">✓</span> 문자 기본 제공</li>
+          </ul>
+          <a href="https://www.n-telecom.co.kr/n0515" target="_blank" class="plan-btn">신청하기</a>
+        </div>
+
+        <!-- K망 후불 100GB(올리브영) -->
+        <div class="plan-card">
+          <div class="plan-network">후불 · K망</div>
+          <h3>100GB(올리브영)</h3>
+          <p class="plan-desc">올리브영 제휴 플랜</p>
+          <div class="plan-price">
+            <span class="amount">₩45,500</span><span class="unit">/월</span>
+          </div>
+          <ul class="plan-details">
+            <li><span class="check">✓</span> 데이터 100GB + 3Mbps</li>
+            <li><span class="check">✓</span> 통화 기본 제공</li>
+            <li><span class="check">✓</span> 문자 기본 제공</li>
+          </ul>
+          <a href="https://www.n-telecom.co.kr/n0515" target="_blank" class="plan-btn">신청하기</a>
+        </div>
+
+        <!-- K망 후불 7GB+(올리브영) -->
+        <div class="plan-card">
+          <div class="plan-network">후불 · K망</div>
+          <h3>7GB+(올리브영)</h3>
+          <p class="plan-desc">합리적 기본 플랜</p>
+          <div class="plan-price">
+            <span class="amount">₩21,100</span><span class="unit">/월</span>
+          </div>
+          <ul class="plan-details">
+            <li><span class="check">✓</span> 데이터 7GB + 1Mbps</li>
+            <li><span class="check">✓</span> 통화 기본 제공</li>
+            <li><span class="check">✓</span> 문자 기본 제공</li>
+          </ul>
+          <a href="https://www.n-telecom.co.kr/n0515" target="_blank" class="plan-btn">신청하기</a>
+        </div>
+
+        <!-- K망 후불 300분/15GB+(다이소) -->
+        <div class="plan-card">
+          <div class="plan-network">후불 · K망</div>
+          <h3>300분/15GB+(다이소)</h3>
+          <p class="plan-desc">통화·데이터 밸런스</p>
+          <div class="plan-price">
+            <span class="amount">₩33,800</span><span class="unit">/월</span>
+          </div>
+          <ul class="plan-details">
+            <li><span class="check">✓</span> 데이터 15GB + 3Mbps</li>
+            <li><span class="check">✓</span> 통화 300분</li>
+            <li><span class="check">✓</span> 문자 기본 제공</li>
+          </ul>
+          <a href="https://www.n-telecom.co.kr/n0515" target="_blank" class="plan-btn">신청하기</a>
+        </div>
+
+        <!-- K망 후불 10GB(CU) -->
+        <div class="plan-card">
+          <div class="plan-network">후불 · K망</div>
+          <h3>10GB(CU)</h3>
+          <p class="plan-desc">저렴한 소용량 플랜</p>
+          <div class="plan-price">
+            <span class="amount">₩22,300</span><span class="unit">/월</span>
+          </div>
+          <ul class="plan-details">
+            <li><span class="check">✓</span> 데이터 10GB</li>
+            <li><span class="check">✓</span> 통화 기본 제공</li>
+            <li><span class="check">✓</span> 문자 기본 제공</li>
+          </ul>
+          <a href="https://www.n-telecom.co.kr/n0515" target="_blank" class="plan-btn">신청하기</a>
+        </div>
+
+        <!-- K망 후불 15GB+(밀리의서재) -->
+        <div class="plan-card">
+          <div class="plan-network">후불 · K망</div>
+          <h3>15GB+(밀리의서재)</h3>
+          <p class="plan-desc">넉넉한 데이터</p>
+          <div class="plan-price">
+            <span class="amount">₩23,500</span><span class="unit">/월</span>
+          </div>
+          <ul class="plan-details">
+            <li><span class="check">✓</span> 데이터 15GB + 3Mbps</li>
+            <li><span class="check">✓</span> 통화 기본 제공</li>
+            <li><span class="check">✓</span> 문자 기본 제공</li>
+          </ul>
+          <a href="https://www.n-telecom.co.kr/n0515" target="_blank" class="plan-btn">신청하기</a>
+        </div>
+
+        <!-- K망 후불 15GB+(다이소) -->
+        <div class="plan-card">
+          <div class="plan-network">후불 · K망</div>
+          <h3>15GB+(다이소)</h3>
+          <p class="plan-desc">넉넉한 데이터</p>
+          <div class="plan-price">
+            <span class="amount">₩25,800</span><span class="unit">/월</span>
+          </div>
+          <ul class="plan-details">
+            <li><span class="check">✓</span> 데이터 15GB + 3Mbps</li>
+            <li><span class="check">✓</span> 통화 기본 제공</li>
+            <li><span class="check">✓</span> 문자 기본 제공</li>
+          </ul>
+          <a href="https://www.n-telecom.co.kr/n0515" target="_blank" class="plan-btn">신청하기</a>
+        </div>
+
+        <!-- K망 후불 300분/15GB+(올리브영) -->
+        <div class="plan-card">
+          <div class="plan-network">후불 · K망</div>
+          <h3>300분/15GB+(올리브영)</h3>
+          <p class="plan-desc">통화·데이터 밸런스</p>
+          <div class="plan-price">
+            <span class="amount">₩33,800</span><span class="unit">/월</span>
+          </div>
+          <ul class="plan-details">
+            <li><span class="check">✓</span> 데이터 15GB + 3Mbps</li>
+            <li><span class="check">✓</span> 통화 300분</li>
+            <li><span class="check">✓</span> 문자 기본 제공</li>
+          </ul>
+          <a href="https://www.n-telecom.co.kr/n0515" target="_blank" class="plan-btn">신청하기</a>
+        </div>
+
+        <!-- K망 후불 15GB(CU) -->
+        <div class="plan-card">
+          <div class="plan-network">후불 · K망</div>
+          <h3>15GB(CU)</h3>
+          <p class="plan-desc">넉넉한 기본 플랜</p>
+          <div class="plan-price">
+            <span class="amount">₩24,000</span><span class="unit">/월</span>
+          </div>
+          <ul class="plan-details">
+            <li><span class="check">✓</span> 데이터 15GB</li>
+            <li><span class="check">✓</span> 통화 기본 제공</li>
+            <li><span class="check">✓</span> 문자 기본 제공</li>
+          </ul>
+          <a href="https://www.n-telecom.co.kr/n0515" target="_blank" class="plan-btn">신청하기</a>
+        </div>
+
+        <!-- K망 후불 15GB+(올리브영) -->
+        <div class="plan-card">
+          <div class="plan-network">후불 · K망</div>
+          <h3>15GB+(올리브영)</h3>
+          <p class="plan-desc">넉넉한 데이터</p>
+          <div class="plan-price">
+            <span class="amount">₩25,800</span><span class="unit">/월</span>
+          </div>
+          <ul class="plan-details">
+            <li><span class="check">✓</span> 데이터 15GB + 3Mbps</li>
+            <li><span class="check">✓</span> 통화 기본 제공</li>
+            <li><span class="check">✓</span> 문자 기본 제공</li>
+          </ul>
+          <a href="https://www.n-telecom.co.kr/n0515" target="_blank" class="plan-btn">신청하기</a>
+        </div>
+
+        <!-- K망 후불 100분/15GB+(CU) -->
+        <div class="plan-card">
+          <div class="plan-network">후불 · K망</div>
+          <h3>100분/15GB+(CU)</h3>
+          <p class="plan-desc">통화·데이터 기본</p>
+          <div class="plan-price">
+            <span class="amount">₩29,300</span><span class="unit">/월</span>
+          </div>
+          <ul class="plan-details">
+            <li><span class="check">✓</span> 데이터 15GB + 3Mbps</li>
+            <li><span class="check">✓</span> 통화 100분</li>
+            <li><span class="check">✓</span> 문자 기본 제공</li>
+          </ul>
+          <a href="https://www.n-telecom.co.kr/n0515" target="_blank" class="plan-btn">신청하기</a>
+        </div>
+
+        <!-- K망 후불 300분/15GB(CU) -->
+        <div class="plan-card">
+          <div class="plan-network">후불 · K망</div>
+          <h3>300분/15GB(CU)</h3>
+          <p class="plan-desc">통화 많은 분께</p>
+          <div class="plan-price">
+            <span class="amount">₩31,500</span><span class="unit">/월</span>
+          </div>
+          <ul class="plan-details">
+            <li><span class="check">✓</span> 데이터 15GB</li>
+            <li><span class="check">✓</span> 통화 300분</li>
+            <li><span class="check">✓</span> 문자 기본 제공</li>
+          </ul>
+          <a href="https://www.n-telecom.co.kr/n0515" target="_blank" class="plan-btn">신청하기</a>
+        </div>
+
+        <!-- K망 후불 300분/15GB+(올리브영) -->
+        <div class="plan-card">
+          <div class="plan-network">후불 · K망</div>
+          <h3>300분/15GB+(올리브영)</h3>
+          <p class="plan-desc">통화·데이터 밸런스</p>
+          <div class="plan-price">
+            <span class="amount">₩33,800</span><span class="unit">/월</span>
+          </div>
+          <ul class="plan-details">
+            <li><span class="check">✓</span> 데이터 15GB + 3Mbps</li>
+            <li><span class="check">✓</span> 통화 300분</li>
+            <li><span class="check">✓</span> 문자 기본 제공</li>
+          </ul>
+          <a href="https://www.n-telecom.co.kr/n0515" target="_blank" class="plan-btn">신청하기</a>
+        </div>
+
+      </div>
+
+      <!-- L망 후불 -->
+      <div style="margin-bottom:12px;">
+        <div style="display:inline-block; background:var(--dark); color:#fff; font-size:12px; font-weight:700; padding:5px 14px; border-radius:6px; margin-bottom:16px; letter-spacing:0.5px;">📶 L망 후불 요금제</div>
+      </div>
+      <div class="plans-grid">
+
+        <!-- L망 후불 11GB+일2GB (추천) -->
+        <div class="plan-card popular">
+          <div class="plan-badge">⭐ 추천</div>
+          <div class="plan-network">후불 · L망</div>
+          <h3>후불 11GB+ 일2GB</h3>
+          <p class="plan-desc">데이터 걱정 없는 무제한</p>
+          <div class="plan-price">
+            <span class="amount">₩36,700</span><span class="unit">/월</span>
+          </div>
+          <ul class="plan-details">
+            <li><span class="check">✓</span> 데이터 11GB+ 매일 2GB + 3Mbps</li>
+            <li><span class="check">✓</span> 통화 기본 제공</li>
+            <li><span class="check">✓</span> 문자 기본 제공</li>
+          </ul>
+          <a href="https://www.n-telecom.co.kr/n0515" target="_blank" class="plan-btn">신청하기</a>
+        </div>
+
+        <!-- L망 후불 매일5GB+ -->
+        <div class="plan-card">
+          <div class="plan-network">후불 · L망</div>
+          <h3>후불 매일5GB+</h3>
+          <p class="plan-desc">매일 리셋 대용량</p>
+          <div class="plan-price">
+            <span class="amount">₩43,200</span><span class="unit">/월</span>
+          </div>
+          <ul class="plan-details">
+            <li><span class="check">✓</span> 매일 5GB 리셋</li>
+            <li><span class="check">✓</span> 소진 후 3Mbps 속도</li>
+            <li><span class="check">✓</span> 통화·문자 기본 제공</li>
+          </ul>
+          <a href="https://www.n-telecom.co.kr/n0515" target="_blank" class="plan-btn">신청하기</a>
+        </div>
+
+        <!-- L망 후불 7GB+ -->
+        <div class="plan-card">
+          <div class="plan-network">후불 · L망</div>
+          <h3>후불 7GB+</h3>
+          <p class="plan-desc">합리적인 기본 플랜</p>
+          <div class="plan-price">
+            <span class="amount">₩17,900</span><span class="unit">/월</span>
+          </div>
+          <ul class="plan-details">
+            <li><span class="check">✓</span> 데이터 7GB + 1Mbps</li>
+            <li><span class="check">✓</span> 통화 기본 제공</li>
+            <li><span class="check">✓</span> 문자 기본 제공</li>
+          </ul>
+          <a href="https://www.n-telecom.co.kr/n0515" target="_blank" class="plan-btn">신청하기</a>
+        </div>
+
+        <!-- L망 후불 300분/15GB+ -->
+        <div class="plan-card">
+          <div class="plan-network">후불 · L망</div>
+          <h3>300분/15GB+</h3>
+          <p class="plan-desc">통화 많은 분께</p>
+          <div class="plan-price">
+            <span class="amount">₩30,600</span><span class="unit">/월</span>
+          </div>
+          <ul class="plan-details">
+            <li><span class="check">✓</span> 데이터 15GB + 3Mbps</li>
+            <li><span class="check">✓</span> 통화 300분</li>
+            <li><span class="check">✓</span> 문자 기본 제공</li>
+          </ul>
+          <a href="https://www.n-telecom.co.kr/n0515" target="_blank" class="plan-btn">신청하기</a>
+        </div>
+
+        <!-- L망 후불 100분/15GB+ -->
+        <div class="plan-card">
+          <div class="plan-network">후불 · L망</div>
+          <h3>100분/15GB+</h3>
+          <p class="plan-desc">통화·데이터 기본</p>
+          <div class="plan-price">
+            <span class="amount">₩28,500</span><span class="unit">/월</span>
+          </div>
+          <ul class="plan-details">
+            <li><span class="check">✓</span> 데이터 15GB + 3Mbps</li>
+            <li><span class="check">✓</span> 통화 100분</li>
+            <li><span class="check">✓</span> 문자 기본 제공</li>
+          </ul>
+          <a href="https://www.n-telecom.co.kr/n0515" target="_blank" class="plan-btn">신청하기</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section class="section steps" id="steps">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">개통 절차</div>
+      <h2>인증서 보유 여부에 따라 개통 방법이 달라요</h2>
+      <p>간편인증서가 있으면 비대면 개통이 가능합니다.</p>
+    </div>
+
+    <!-- 안면인증 NEW 안내 -->
+    <div style="background:linear-gradient(135deg, #FF8C3A 0%, #FF6B00 100%); border-radius:20px; padding:36px; margin-bottom:52px; text-align:center; position:relative; overflow:hidden;">
+      <div style="position:absolute; top:12px; right:12px; background:#fff; color:#FF6B00; font-size:12px; font-weight:800; padding:5px 14px; border-radius:20px; letter-spacing:0.5px;">🆕 NEW</div>
+      <div style="font-size:40px; margin-bottom:14px;">📷</div>
+      <h3 style="color:#fff; font-size:28px; font-weight:800; margin-bottom:14px;">안면인증 개통 추가!</h3>
+      <p style="color:rgba(255,255,255,0.95); font-size:17px; line-height:1.7; max-width:700px; margin:0 auto;">
+        이용자의 얼굴 정보와 신분증 정보를 분석하여 본인 여부를 확인하는 생체인증 기술<br>
+        <strong style="color:#fff; font-size:18px;">주민등록증, 운전면허증, PASS앱 모바일 신분증</strong>으로 간편하게 개통 가능합니다
+      </p>
+      <div style="margin-top:26px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap; font-size:15px;">
+        <div style="background:rgba(255,255,255,0.25); backdrop-filter:blur(10px); border-radius:8px; padding:10px 18px; color:#fff; font-weight:600;">
+          ① 개통 신청
+        </div>
+        <div style="background:rgba(255,255,255,0.25); backdrop-filter:blur(10px); border-radius:8px; padding:10px 18px; color:#fff; font-weight:600;">
+          ② QR 스캔
+        </div>
+        <div style="background:rgba(255,255,255,0.25); backdrop-filter:blur(10px); border-radius:8px; padding:10px 18px; color:#fff; font-weight:600;">
+          ③ 신분증 + 안면 촬영
+        </div>
+        <div style="background:rgba(255,255,255,0.25); backdrop-filter:blur(10px); border-radius:8px; padding:10px 18px; color:#fff; font-weight:600;">
+          ④ 인증 완료
+        </div>
+      </div>
+    </div>
+
+    <!-- 유심 구입 -->
+    <div style="margin-bottom:52px;">
+      <h3 style="text-align:center; font-size:26px; font-weight:800; color:var(--dark); margin-bottom:28px;">1️⃣ 유심 구입</h3>
+      <div style="display:flex; gap:28px; margin:28px 0; justify-content:center; flex-wrap:wrap; max-width:700px; margin-left:auto; margin-right:auto;">
+        
+        <!-- KT 바로유심 -->
+        <div style="text-align:center; flex:1; min-width:220px;">
+          <div style="width:220px; height:320px; margin:0 auto 14px; border-radius:16px; box-shadow:0 6px 20px rgba(0,0,0,0.15); background:linear-gradient(to bottom right, #4DD0E1, #80DEEA); position:relative; overflow:hidden; padding:20px; display:flex; flex-direction:column; align-items:center; justify-content:space-between;">
+            <!-- 상단 텍스트 - 겹치지 않게 -->
+            <div style="background:rgba(255,255,255,0.95); padding:6px 14px; border-radius:8px; margin-bottom:4px;">
+              <div style="font-size:11px; color:#00796B; font-weight:700;">쉽고 빠르게</div>
+            </div>
+            
+            <div style="color:#fff; font-size:13px; font-weight:700; text-shadow:0 2px 4px rgba(0,0,0,0.2); margin-bottom:4px;">KT 알뜰폰과 KT 다이렉트</div>
+            <div style="color:#fff; font-size:13px; font-weight:700; text-shadow:0 2px 4px rgba(0,0,0,0.2); margin-bottom:8px;">요금제를</div>
+            
+            <!-- 바로유심 박스 -->
+            <div style="background:rgba(255,255,255,0.95); padding:10px 18px; border-radius:10px; margin-bottom:6px;">
+              <div style="color:#00796B; font-size:26px; font-weight:900; letter-spacing:-1px;">바로유심</div>
+            </div>
+            
+            <div style="color:#fff; font-size:12px; font-weight:600; margin-bottom:10px; text-shadow:0 2px 4px rgba(0,0,0,0.2);">통해 만나보세요!</div>
+            
+            <!-- 흰색 귀여운 고양이 -->
+            <div style="margin-bottom:10px;">
+              <svg width="90" height="60" viewBox="0 0 100 65" xmlns="http://www.w3.org/2000/svg">
+                <!-- 고양이 몸통 -->
+                <ellipse cx="50" cy="45" rx="32" ry="18" fill="#fff" opacity="0.95"/>
+                <!-- 고양이 머리 -->
+                <ellipse cx="75" cy="32" rx="20" ry="18" fill="#fff" opacity="0.95"/>
+                <!-- 왼쪽 귀 -->
+                <path d="M 65 18 L 60 8 L 70 20 Z" fill="#fff" opacity="0.95"/>
+                <!-- 오른쪽 귀 -->
+                <path d="M 82 16 L 88 6 L 78 20 Z" fill="#fff" opacity="0.95"/>
+                <!-- 귀 안쪽 분홍 -->
+                <path d="M 67 18 L 64 12 L 70 20 Z" fill="#FFB3D9" opacity="0.8"/>
+                <path d="M 80 16 L 84 10 L 78 20 Z" fill="#FFB3D9" opacity="0.8"/>
+                <!-- 눈 -->
+                <ellipse cx="72" cy="30" rx="2" ry="3" fill="#333"/>
+                <ellipse cx="82" cy="29" rx="2" ry="3" fill="#333"/>
+                <!-- 눈 하이라이트 -->
+                <circle cx="72.5" cy="29" r="0.8" fill="#fff"/>
+                <circle cx="82.5" cy="28" r="0.8" fill="#fff"/>
+                <!-- 코 -->
+                <ellipse cx="78" cy="35" rx="2" ry="1.5" fill="#FFB3D9"/>
+                <!-- 입 -->
+                <path d="M 78 36 Q 75 38 73 36" stroke="#333" stroke-width="1.2" fill="none"/>
+                <path d="M 78 36 Q 81 38 83 36" stroke="#333" stroke-width="1.2" fill="none"/>
+                <!-- 꼬리 -->
+                <ellipse cx="22" cy="48" rx="8" ry="12" fill="#fff" opacity="0.95" transform="rotate(-25 22 48)"/>
+                <ellipse cx="15" cy="40" rx="6" ry="9" fill="#fff" opacity="0.95" transform="rotate(-35 15 40)"/>
+                <!-- 앞발 -->
+                <ellipse cx="60" cy="58" rx="5" ry="8" fill="#fff" opacity="0.95"/>
+                <ellipse cx="70" cy="60" rx="5" ry="9" fill="#fff" opacity="0.95"/>
+                <!-- 뒷발 -->
+                <ellipse cx="38" cy="58" rx="6" ry="8" fill="#fff" opacity="0.95"/>
+                <ellipse cx="28" cy="56" rx="5" ry="7" fill="#fff" opacity="0.95"/>
+                <!-- 수염 -->
+                <line x1="72" y1="33" x2="62" y2="31" stroke="#333" stroke-width="0.8" opacity="0.6"/>
+                <line x1="72" y1="36" x2="62" y2="36" stroke="#333" stroke-width="0.8" opacity="0.6"/>
+                <line x1="84" y1="32" x2="94" y2="30" stroke="#333" stroke-width="0.8" opacity="0.6"/>
+                <line x1="84" y1="35" x2="94" y2="35" stroke="#333" stroke-width="0.8" opacity="0.6"/>
+              </svg>
+            </div>
+            
+            <!-- 하단 로고 텍스트 -->
+            <div style="margin-top:auto; padding-bottom:4px;">
+              <div style="background:rgba(255,255,255,0.95); padding:8px 18px; border-radius:8px;">
+                <div style="color:#333; font-size:13px; font-weight:700; letter-spacing:-0.3px;">kt MVNO 알뜰폰 | kt</div>
+              </div>
+            </div>
+          </div>
+          <p style="margin:0; font-size:16px; color:var(--dark); font-weight:700; margin-bottom:6px;">KT 바로유심</p>
+          <p style="margin:0; font-size:14px; color:var(--text-mid);">이마트24 · CU · GS25</p>
+        </div>
+
+        <!-- LG 모두의원칩 -->
+        <div style="text-align:center; flex:1; min-width:220px;">
+          <div style="width:220px; height:320px; margin:0 auto 14px; border-radius:16px; box-shadow:0 6px 20px rgba(0,0,0,0.15); background:#F5F5F5; position:relative; overflow:hidden; padding:30px 24px; display:flex; flex-direction:column; align-items:center; justify-content:space-between;">
+            <!-- 상단 여백 -->
+            <div style="padding:8px;"></div>
+            
+            <!-- 모두의원칩 텍스트 -->
+            <div style="text-align:center; flex:1; display:flex; flex-direction:column; justify-content:center;">
+              <div style="font-size:13px; color:#999; margin-bottom:16px; font-weight:600; line-height:1.5;">원칩은 LG U+ 알뜰폰과<br>유플러스 다이렉트 요금제를<br>이용할 수 있는 유심입니다</div>
+              <div style="background:#fff; padding:16px 24px; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+                <div style="color:#666; font-size:12px; margin-bottom:6px;">모두의 ONE</div>
+                <div style="color:#C41E3A; font-size:28px; font-weight:800;">유심 원칩!</div>
+              </div>
+            </div>
+            
+            <!-- 하단 LGU+ 텍스트만 (박스 없이) -->
+            <div style="margin-top:auto; padding-bottom:12px;">
+              <div style="color:#C41E3A; font-size:28px; font-weight:800; letter-spacing:-0.5px;">LG U+</div>
+            </div>
+          </div>
+          <p style="margin:0; font-size:16px; color:var(--dark); font-weight:700; margin-bottom:6px;">LG 모두의원칩</p>
+          <p style="margin:0; font-size:14px; color:var(--text-mid);">이마트24 · 스토리웨이</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 개통 방법 선택 -->
+    <div style="margin-bottom:40px;">
+      <h3 style="text-align:center; font-size:26px; font-weight:800; color:var(--dark); margin-bottom:36px;">2️⃣ 인증서별 개통방법</h3>
+      
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:26px; max-width:1100px; margin:0 auto;">
+        
+        <!-- 플랫폼 개통 -->
+        <div style="background:#fff; border-radius:18px; padding:32px; box-shadow:var(--shadow); border:2px solid var(--primary);">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:18px;">
+            <div style="width:52px; height:52px; border-radius:50%; background:linear-gradient(135deg, #4A90E2, #64B5F6); display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;">
+              <!-- 지구 -->
+              <svg width="52" height="52" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="26" cy="26" r="24" fill="#4A90E2"/>
+                <circle cx="26" cy="26" r="24" fill="url(#grad1)"/>
+                <defs>
+                  <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#2196F3;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#64B5F6;stop-opacity:1" />
+                  </linearGradient>
+                </defs>
+                <!-- 대륙 모양들 -->
+                <ellipse cx="20" cy="18" rx="6" ry="4" fill="#7ED321" opacity="0.8"/>
+                <ellipse cx="32" cy="22" rx="5" ry="6" fill="#7ED321" opacity="0.8"/>
+                <ellipse cx="18" cy="30" rx="7" ry="5" fill="#7ED321" opacity="0.8"/>
+                <ellipse cx="35" cy="35" rx="4" ry="5" fill="#7ED321" opacity="0.8"/>
+                <!-- 구름 -->
+                <ellipse cx="15" cy="12" rx="3" ry="2" fill="#fff" opacity="0.6"/>
+                <ellipse cx="38" cy="15" rx="4" ry="2" fill="#fff" opacity="0.5"/>
+              </svg>
+            </div>
+            <div>
+              <div style="font-size:12px; color:var(--primary); font-weight:700; text-transform:uppercase; letter-spacing:0.5px;">추천</div>
+              <h4 style="font-size:20px; font-weight:800; color:var(--dark); margin:0;">플랫폼 개통</h4>
+            </div>
+          </div>
+          <p style="font-size:15px; color:var(--text-mid); line-height:1.6; margin-bottom:18px;">간편인증서를 통한 가장 빠른 개통</p>
+          <div style="background:rgba(255,107,0,0.08); border-radius:12px; padding:16px; margin-bottom:18px;">
+            <p style="font-size:13px; font-weight:700; color:var(--dark); margin-bottom:10px;">✅ 사용 가능한 인증:</p>
+            <p style="font-size:14px; color:var(--text-mid); margin:0; line-height:1.6;">
+              <strong>간편인증서:</strong> 카카오 · 토스 · PASS · 국민 · 신한<br>
+              <strong>안면인증:</strong> 주민등록증 · 운전면허증 · PASS 모바일신분증
+            </p>
+          </div>
+          <div style="text-align:center; margin-top:22px;">
+            <a href="https://www.n-telecom.co.kr/n0515" target="_blank" style="display:inline-block; background:var(--primary); color:#fff; padding:14px 28px; border-radius:11px; text-decoration:none; font-size:15px; font-weight:700; transition:all .2s;">N플랫폼 개통 →</a>
+          </div>
+        </div>
+
+        <!-- 어플 개통 -->
+        <div style="background:#fff; border-radius:18px; padding:32px; box-shadow:var(--shadow); border:2px solid var(--border);">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:18px;">
+            <div style="width:52px; height:52px; border-radius:12px; background:#03C75A; display:flex; align-items:center; justify-content:center;">
+              <span style="color:#fff; font-size:32px; font-weight:900; font-family:sans-serif;">N</span>
+            </div>
+            <div style="flex:1;">
+              <h4 style="font-size:20px; font-weight:800; color:var(--dark); margin:0;">어플 개통</h4>
+            </div>
+          </div>
+          <p style="font-size:15px; color:var(--text-mid); line-height:1.6; margin-bottom:18px;">네이버 인증서 보유 시</p>
+          
+          <!-- 네이버 인증서 강조 -->
+          <div style="background:linear-gradient(135deg, rgba(3,199,90,0.1), rgba(3,199,90,0.15)); border-radius:12px; padding:24px; margin-bottom:18px; text-align:center; border:2px solid rgba(3,199,90,0.3); display:flex; flex-direction:column; align-items:center; justify-content:center;">
+            <div style="font-size:16px; color:var(--dark); font-weight:700; margin-bottom:14px;">네이버 인증서</div>
+            <div style="width:100px; height:100px; background:#03C75A; border-radius:20px; display:flex; align-items:center; justify-content:center;">
+              <span style="color:#fff; font-size:64px; font-weight:900; font-family:sans-serif; line-height:1;">N</span>
+            </div>
+          </div>
+
+          <!-- 앱 설치 안내 -->
+          <div style="background:rgba(0,0,0,0.03); border-radius:10px; padding:14px; margin-top:18px;">
+            <p style="font-size:14px; color:var(--text-mid); margin-bottom:14px; line-height:1.6;"><strong style="font-size:15px;">📌 앱 설치 필요</strong></p>
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+              <div style="width:56px; height:56px; border-radius:14px; background:linear-gradient(135deg, #20D5C3 0%, #84E8A5 100%); box-shadow:0 4px 12px rgba(0,0,0,0.15); display:flex; align-items:center; justify-content:center;">
+                <!-- Ntelecom 텍스트 크고 선명하게 -->
+                <div style="text-align:center; line-height:1;">
+                  <div style="color:#fff; font-size:22px; font-weight:900; letter-spacing:-1px; text-shadow:0 1px 2px rgba(0,0,0,0.2);">N</div>
+                  <div style="color:#fff; font-size:9px; font-weight:800; letter-spacing:0.8px; margin-top:0px; text-shadow:0 1px 2px rgba(0,0,0,0.2);">telecom</div>
+                </div>
+              </div>
+              <div style="flex:1;">
+                <p style="margin:0; font-size:14px; color:var(--dark); font-weight:700;">앤텔레콤 멤버십</p>
+                <p style="margin:0; font-size:13px; color:var(--text-light); margin-top:2px;">앱 다운로드 후 접수</p>
+              </div>
+            </div>
+            <p style="font-size:14px; color:var(--text-mid); margin:0; line-height:1.5;">회원번호 <strong style="color:var(--primary); font-size:17px;">2674679</strong> 입력</p>
+          </div>
+        </div>
+
+        <!-- 방문 개통 -->
+        <div style="background:#fff; border-radius:18px; padding:32px; box-shadow:var(--shadow); border:2px solid var(--border);">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:18px;">
+            <div style="width:52px; height:52px; border-radius:14px; background:rgba(255,193,7,0.15); display:flex; align-items:center; justify-content:center; font-size:26px;">🏢</div>
+            <div>
+              <h4 style="font-size:20px; font-weight:800; color:var(--dark); margin:0;">방문 개통</h4>
+            </div>
+          </div>
+          <p style="font-size:15px; color:var(--text-mid); line-height:1.6; margin-bottom:18px;">인증서가 없는 경우</p>
+          <div style="background:rgba(255,193,7,0.08); border-radius:12px; padding:16px; margin-bottom:18px;">
+            <p style="font-size:14px; font-weight:700; color:var(--dark); margin-bottom:10px;">📍 준비물:</p>
+            <p style="font-size:15px; color:var(--text-mid); margin:0; line-height:1.6;">
+              • 신분증 (주민등록증, 운전면허증)<br>
+              • 유심칩<br>
+              • 비용 (유심비 + 충전비)
+            </p>
+          </div>
+          <div style="text-align:center; margin-top:22px;">
+            <a href="http://pf.kakao.com/_Dfxiib/chat" target="_blank" style="display:inline-block; background:#FFE812; color:#3C1E08; padding:14px 28px; border-radius:11px; text-decoration:none; font-size:15px; font-weight:700; transition:all .2s;">카톡 상담 예약 →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 승인 완료 -->
+    <div style="text-align:center; margin-top:52px; padding:36px; background:linear-gradient(135deg, rgba(255,107,0,0.05), rgba(255,107,0,0.12)); border-radius:18px;">
+      <h3 style="font-size:26px; font-weight:800; color:var(--dark); margin-bottom:14px;">3️⃣ 승인 완료</h3>
+      <p style="font-size:17px; color:var(--text-mid); margin-bottom:22px;">개통 신청 후 카톡 채널로 <strong style="font-size:18px;">"신청완료"</strong> 메시지를 보내주세요</p>
+      <a href="http://pf.kakao.com/_Dfxiib" target="_blank" style="display:inline-flex; align-items:center; gap:10px; background:var(--primary); color:#fff; padding:16px 32px; border-radius:13px; text-decoration:none; font-size:17px; font-weight:700; margin:0 auto;">
+        💬 카톡 채널로 승인 요청하기
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">이용 후기</div>
+      <h2>고객들의 실제 경험</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>미납폰이라 본인 인증이 안 돼서 은행 업무나 정부24 이용이 불편했는데, 셀프개통하니 바로 제 명의 폰이 생겨서 모든 본인 인증이 해결됐어요!</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">김</div>
+          <div class="testimonial-author-info">
+            <div class="name">김*수 고객님</div>
+            <div class="role">미납폰 → 본인명의 개통</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>퇴근 후에 신청해서 내일 되어야 할 줄 알았는데, 밤에 카톡 드렸는데도 바로 승인해주셨어요. 속도가 정말 빠르고 친절해서 최고입니다!</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">박</div>
+          <div class="testimonial-author-info">
+            <div class="name">박*진 고객님</div>
+            <div class="role">야간 즉시 개통</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>외국인 친구가 여권으로 개통하는게 가능한지 걱정했는데, 여권만으로도 개통이 돼서 정말 편했습니다. 친구도 아주 만족스럽다고 합니다.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">이</div>
+          <div class="testimonial-author-info">
+            <div class="name">이*로 고객님</div>
+            <div class="role">외국인 유심 개통</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section faq" id="faq">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">FAQ</div>
+      <h2>자주 묻는 질문</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          주말·공휴일에도 개통 가능한가요? <span class="arrow">▼</span>
+        </div>
+        <div class="faq-a">네, 365일 연중무휴로 운영됩니다. (오전 8시 ~ 오후 9시50분) 주말이나 빨간 날에도 앱으로 신청 후 연락하시면 즉시 승인해드립니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          신용불량자도 본인 명의로 개통되는가요? <span class="arrow">▼</span>
+        </div>
+        <div class="faq-a">네, 그렇습니다. 선불폰은 요금을 미리 내고 쓰는 방식이므로 신용등급과 전혀 무관하게 100% 본인 명의로 개통되며 본인인증도 가능합니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          기존 폰과 번호를 그대로 쓸 수 있나요? <span class="arrow">▼</span>
+        </div>
+        <div class="faq-a">폰 기계는 그대로 사용 가능합니다. 다만, 미납으로 인해 정지된 상태라면 번호이동은 불가하여 새로운 번호로 개통하셔야 합니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          인증 수단이 없으면 어떻게 하나요? <span class="arrow">▼</span>
+        </div>
+        <div class="faq-a">카카오 채널로 연락하시면 방문 예약을 안내드리고, 지점에서 즉시 개통을 도와드립니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <h2>지금 바로 본인 명의 폰을 만들어보세요</h2>
+  <p>복잡한 절차 없이 5분 안에 완료할 수 있습니다.</p>
+  <div class="cta-btns">
+    <a href="https://www.n-telecom.co.kr/n0515" target="_blank" class="btn-primary">🚀 개통 시작하기</a>
+    <a href="http://pf.kakao.com/_Dfxiib" target="_blank" class="btn-secondary">💬 카톡 상담</a>
+  </div>
+</section>
+
+<!-- CONTACT BAR -->
+<section class="contact-bar">
+  <div class="contact-bar-inner">
+    <a href="http://pf.kakao.com/_Dfxiib" target="_blank" class="contact-item">
+      <div class="c-icon kakao">🐶</div>
+      <div><div class="c-label">카카오 채널</div><div class="c-value">emongs73</div></div>
+    </a>
+    <a href="tel:01029496732" class="contact-item">
+      <div class="c-icon phone">📞</div>
+      <div><div class="c-label">전화 상담</div><div class="c-value">010-2949-6732</div></div>
+    </a>
+    <a href="https://www.n-telecom.co.kr/n0515" target="_blank" class="contact-item">
+      <div class="c-icon open">🌐</div>
+      <div><div class="c-label">개통 링크</div><div class="c-value">n-telecom.co.kr/n0515</div></div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="logo">몽실언니<span style="color:rgba(255,255,255,0.7)">선불폰</span></a>
+        <p>앤텔레콤 공식 대리점으로서 안전하고 신뢰할 수 있는 셀프 개통 서비스를 제공합니다. SSL 보안서버가 적용되어 개인정보가 안전하게 보호됩니다.</p>
+      </div>
+      <div class="footer-links">
+        <div>
+          <h5>연락처</h5>
+          <ul>
+            <li><a href="tel:01029496732">010-2949-6732</a></li>
+            <li><a href="http://pf.kakao.com/_Dfxiib" target="_blank">카카오 채널</a></li>
+            <li><a href="https://www.n-telecom.co.kr/n0515" target="_blank">개통 링크</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 몽실언니 선불폰 · All rights reserved.</span>
+      <span>본 사이트는 앤텔레콤 공식 대리점(코드: 2674679)에서 운영됩니다.</span>
+    </div>
+    <div style="text-align:center; margin-top:20px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.08);">
+      <a href="http://info.n-telecom.co.kr/customers/event_view.jsp?idx=76" target="_blank" style="display:inline-flex; align-items:center; gap:8px; color:rgba(255,255,255,0.5); text-decoration:none; font-size:13px; transition:color .2s;">
+        <span style="font-size:18px;">📄</span>
+        <span>사전승낙서 확인</span>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast">📋 회원번호가 복사되었습니다!</div>
+
+<script>
+  // Postpaid toggle
+  function togglePostpaid() {
+    const panel = document.getElementById('postpaid-plans');
+    const btn = document.getElementById('postpaidToggleBtn');
+    const isOpen = panel.style.display === 'block';
+    panel.style.display = isOpen ? 'none' : 'block';
+    btn.textContent = isOpen ? '후불 요금제도 보기 ▼' : '후불 요금제 닫기 ▲';
+  }
+
+  // Navbar scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Copy code
+  function copyCode() {
+    navigator.clipboard.writeText('2674679').then(() => {
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2200);
+    });
+  }
+
+  // FAQ toggle
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    const wasOpen = item.classList.contains('open');
+    // close all
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    // open clicked if it wasn't open
+    if (!wasOpen) item.classList.add('open');
+  }
+
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
