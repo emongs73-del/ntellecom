@@ -163,12 +163,12 @@
     position:relative;
   }
   .hero-card h3 {
-    color:#fff; font-size:18px; font-weight:700;
+    color:#fff; font-size:20px; font-weight:700;
     margin-bottom:6px;
   }
   .hero-card > p {
-    color:rgba(255,255,255,0.5); font-size:13px;
-    margin-bottom:28px;
+    color:rgba(255,255,255,0.65); font-size:15px; line-height:1.5;
+    margin-bottom:24px;
   }
   .code-box {
     background: rgba(0,0,0,0.3); border-radius:12px;
@@ -189,9 +189,9 @@
   .hero-card-links a {
     display:flex; align-items:center; gap:10px;
     text-decoration:none; color:rgba(255,255,255,0.8);
-    font-size:13px; font-weight:500;
+    font-size:15px; font-weight:500; line-height:1.4; min-width:0;
     background: rgba(255,255,255,0.06);
-    border-radius:10px; padding:12px 16px;
+    border-radius:10px; padding:10px 12px;
     transition: background .2s;
   }
   .hero-card-links a:hover { background: rgba(255,255,255,0.12); }
@@ -522,7 +522,7 @@
       <p>개통시 아래 코드를 필수로 입력해주세요</p>
       <div class="code-box" style="background:#fff; border:3px solid var(--primary); padding:24px 30px; max-width:500px; margin:0 auto;">
         <div style="text-align:center; width:100%;">
-          <div class="code-label" style="color:var(--primary); font-weight:700; font-size:16px; margin-bottom:12px;">⭐ 필수 입력 코드</div>
+          <div class="code-label" style="color:var(--primary); font-weight:700; font-size:18px; margin-bottom:12px;">⭐ 필수 입력 코드</div>
           <div class="code-value" style="font-size:38px; color:var(--primary); font-weight:900; letter-spacing:2px; line-height:1.2;" id="codeValue">2917892</div>
         </div>
       </div>
@@ -609,12 +609,29 @@
 
       <!-- 선불 459 K망 전용 -->
       <div class="plan-card popular">
-        <div class="plan-badge">🔥 인기 1위</div>
+        <div class="plan-badge">🔥 KT 인기 1위</div>
         <div class="plan-network">선불 · K망 전용</div>
         <h3>LTE 459</h3>
         <p class="plan-desc">더 빠른 속도, 넉넉한 용량</p>
         <div class="plan-price">
           <span class="amount">₩45,900</span><span class="unit">/월</span>
+        </div>
+        <ul class="plan-details">
+          <li><span class="check">✓</span> 데이터 20.3GB + 3Mbps</li>
+          <li><span class="check">✓</span> 통화 기본 제공</li>
+          <li><span class="check">✓</span> 문자 기본 제공</li>
+        </ul>
+        <a href="https://www.n-telecom.co.kr/qkrwjddo00/view/open/selfopen_explain.aspx" target="_blank" class="plan-btn">신청하기</a>
+      </div>
+
+      <!-- 선불 LG 464 -->
+      <div class="plan-card popular">
+        <div class="plan-badge">🔥 LG 인기 1위</div>
+        <div class="plan-network">선불 · LG망 전용</div>
+        <h3 style="display:flex; align-items:center; justify-content:space-between; gap:12px;">464 <span style="display:inline-block; background:#FF6B00; color:#fff; border-radius:8px; padding:5px 13px; font-size:17px; font-weight:900; letter-spacing:0.5px; white-space:nowrap;">5G</span></h3>
+        <p class="plan-desc">넉넉한 데이터 플랜</p>
+        <div class="plan-price">
+          <span class="amount">₩46,400</span><span class="unit">/월</span>
         </div>
         <ul class="plan-details">
           <li><span class="check">✓</span> 데이터 20.3GB + 3Mbps</li>
